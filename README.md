@@ -50,10 +50,6 @@ Clone the repository:
 git clone https://github.com/USERNAME/fetch.git
 cd fetch
 ```
-Compile:
-```
-g++ main.cpp -o fetch
-```
 Run:
 ```
 ./fetch
@@ -69,11 +65,11 @@ You can also manually select a logo:
 ./fetch --mint-logo
 📂 Project Structure
 fetch/
-├── main.cpp
+├── fetch.cpp
 ├── oslogo.h
 ├── system.h
 └── README.md
-main.cpp
+fetch.cpp
 ```
 Handles distribution detection, command-line arguments and logo selection.
 
