@@ -8,22 +8,30 @@
 #include "oslogo.h"
 #include "system.h"
 
-std::string nodename()
+int main(int argc, char* argv[])
 {
     struct utsname buffer;
 
-    if (uname(&buffer) == 0)
-        return buffer.nodename;
+    if(argc == 1)
+    {
+        if(distro_name() == "Arch Linux")
+            arch_logo();
 
-    return "";
-}
+        else if(distro_name() == "Fedora Linux")
+            fedora_logo();
 
-int main()
-{
-    struct utsname buffer;
-
-    if(nodename() == "arch")
-        arch_logo();
+        else if(distro_name() == "Linux Mint")
+            mint_logo();
+    }
+    else if(argc > 1)
+    {
+        if(std::string(argv[1]) == "--arch-logo")
+            arch_logo();
+        if(std::string(argv[1]) == "--fedora-logo")
+            fedora_logo();
+        if(std::string(argv[1]) == "--mint-logo")
+            mint_logo();
+    }
     
     return 0;
 }
