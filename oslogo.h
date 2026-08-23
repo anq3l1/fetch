@@ -2,46 +2,54 @@
 #define OSLOGO_H
 
 #include <iostream>
+#include "system.h"
 
-std::string distro_name();
-std::string kernel_info();
-std::string distro_cpu();
-std::string getGpuName();
-float distro_ram();
-float distro_totalram();
-int sys_uptime();
 
 void arch_logo()
 {
     std::cout << R"(          /\
          /  \               OS:      )" << distro_name() << R"(
         /    \              Kernel:  )" << kernel_info() << R"(
-       /      \             CPU:     )" << distro_cpu() << R"(
-      /   ,,   \            GPU:     )" << getGpuName() << R"(
-     /   |  |   \           RAM:     )" << distro_ram() << " / " << distro_totalram() << " GB"<< R"(
-    /_-''    ''-_\          Uptime:  )" << sys_uptime() << " min" << R"(
-                            
+       /      \             WM:      )" << distr_wm() << R"(
+      /   ,,   \            Shell:   )" << distro_shell() << R"(
+     /   |  |   \           CPU:     )" << distro_cpu() << R"(
+    /_-''    ''-_\          GPU:     )" << getGpuName() << R"(
+                            RAM:     )" << distro_ram() << " / " << distro_totalram() << " GB" << R"(
+                            Uptime:  )" << sys_uptime_hours() << " h " << sys_uptime_minute() << R"( min
+
                             ● ● ● ● ● ● ● ●)" << '\n';
 }
 
 
-// ___________    
-//|_          \   
-//  | | _____ | 
-//  | | | | | |    
-//  | | | | | | 
-//  | \_____/ |   
-//  \_________/ 
+void mint_logo()
+{
+    std::cout << R"(___________                 OS:      )" << distro_name() << R"(
+|_          \               Kernel:  )" << kernel_info() << R"(
+  | | _____ |               WM:      )" << distr_wm() << R"(
+  | | | | | |               Shell:   )" << distro_shell() << R"(
+  | | | | | |               CPU:     )" << distro_cpu() << R"(
+  | \_____/ |               GPU:     )" << getGpuName() << R"(
+  \_________/               RAM:     )" << distro_ram() << " / " << distro_totalram() << " GB" << R"(
+                            Uptime:  )" << sys_uptime_hours() << " h " << sys_uptime_minute() << R"( min
+
+                            ● ● ● ● ● ● ● ●)" << '\n';
+}
 
 
-//        ,'''''.    
-//       |   ,.  |   
-//       |  |  '_'   
-//  ,....|  |..      
-//.'  ,_;|   ..'     
-//|  |   |  |        
-//|  ',_,'  |         
-// '.     ,'         
-//   '''''    
+void fedora_logo()
+{
+    std::cout << R"(      ,'''''.                 OS:      )" << distro_name() << R"(
+     |   ,.  |                 Kernel:  )" << kernel_info() << R"(
+     |  |  '_'                 WM:      )" << distr_wm() << R"(
+,....|  |..                    Shell:   )" << distro_shell() << R"(
+.'  ,_;|   ..'                 CPU:     )" << distro_cpu() << R"(
+|  |   |  |                    GPU:     )" << getGpuName() << R"(
+|  ',_,'  |                    RAM:     )" << distro_ram() << " / " << distro_totalram() << " GB" << R"(
+ '.     ,'                     Uptime:  )" << sys_uptime_hours() << " h " << sys_uptime_minute() << R"( min
+   ''''
+
+                            ● ● ● ● ● ● ● ●)" << '\n';
+}
+
 
 #endif
