@@ -1,6 +1,6 @@
 # fetch
 ___
-mini our fetch for look system information.
-only for linux(ARCH|FEDORA|MINT).
-update be later...
+mini our fetch for look system information.\n
+only for linux(ARCH|FEDORA|MINT).\n
+update be later...\n
 __
