@@ -46,23 +46,24 @@ More distributions can be added in the future.
 🔧 Installation
 
 Clone the repository:
-
+```
 git clone https://github.com/USERNAME/fetch.git
 cd fetch
-
+```
 Compile:
-
+```
 g++ main.cpp -o fetch
-
+```
 Run:
-
+```
 ./fetch
+```
 🎨 Logo Selection
 
 Fetch automatically selects the logo based on the installed distribution.
 
 You can also manually select a logo:
-
+```
 ./fetch --arch-logo
 ./fetch --fedora-logo
 ./fetch --mint-logo
@@ -73,7 +74,7 @@ fetch/
 ├── system.h
 └── README.md
 main.cpp
-
+```
 Handles distribution detection, command-line arguments and logo selection.
 
 oslogo.h
