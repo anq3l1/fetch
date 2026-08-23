@@ -47,7 +47,7 @@ More distributions can be added in the future.
 
 Clone the repository:
 ```
-git clone https://github.com/USERNAME/fetch.git
+git clone https://github.com/anq3l1/fetch.git
 cd fetch
 ```
 Run:
