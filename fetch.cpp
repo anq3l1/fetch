@@ -7,11 +7,10 @@
 #include <memory>
 #include "oslogo.h"
 #include "system.h"
+#include "config.h"
 
 int main(int argc, char* argv[])
 {
-    struct utsname buffer;
-
     if(argc == 1)
     {
         if(distro_name() == "Arch Linux")
@@ -32,6 +31,8 @@ int main(int argc, char* argv[])
         if(std::string(argv[1]) == "--mint-logo")
             mint_logo();
     }
+
+
     
     return 0;
 }
