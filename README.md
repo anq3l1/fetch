@@ -141,29 +141,32 @@ Contains header files with function declarations and interfaces used by the proj
 
 Contains the Fetch configuration file.
 
-🛠️ Technologies
-C++
-Linux /proc
-Linux /sys
-uname()
-sysinfo()
-Standard C++ Library
-CMake
+## 🛠️ Technologies
 
-No external libraries are required.
+- **C++**
+- **Linux `/proc`**
+- **Linux `/sys`**
+- **`uname()`**
+- **`sysinfo()`**
+- **Standard C++ Library**
+- **CMake**
 
-🚧 Roadmap
- Add more Linux distributions
- Improve distribution detection
- Add color themes
- Add disk usage
- Add battery information
- Add network information
- Add command-line help
- Improve GPU detection
- Expand configuration system
-📜 License
+> No external libraries are required.
 
-This project is licensed under the MIT License.
+## 🚧 Roadmap
+
+- [ ] Add more Linux distributions
+- [ ] Improve distribution detection
+- [ ] Add color themes
+- [ ] Add disk usage
+- [ ] Add battery information
+- [ ] Add network information
+- [ ] Add command-line help
+- [ ] Improve GPU detection
+- [ ] Expand configuration system
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
 
 <p align="center"> Made with ❤️ and C++ on Linux </p> ```
