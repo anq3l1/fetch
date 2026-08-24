@@ -1,5 +1,3 @@
-#ifndef SYSTEM_H
-#define SYSTEM_H
 #include <iostream>
 #include <sys/sysinfo.h>
 #include <fstream>
@@ -9,8 +7,10 @@
 #include <memory>
 #include <unistd.h>
 #include "config.h"
+#include "system.h"
 
-std::string getGpuName() {
+std::string getGpuName() 
+{
     if(configPars("show_gpu = ") == "true")
     {
         std::string result = "";
@@ -171,5 +171,3 @@ float distro_ram()
 
     return 0;
 }
-
-#endif

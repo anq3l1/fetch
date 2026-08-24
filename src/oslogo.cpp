@@ -1,6 +1,3 @@
-#ifndef OSLOGO_H
-#define OSLOGO_H
-
 #include <iostream>
 #include "system.h"
 
@@ -50,6 +47,3 @@ void fedora_logo()
 
                             ● ● ● ● ● ● ● ●)" << '\n';
 }
-
-
-#endif

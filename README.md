@@ -54,6 +54,42 @@ Run:
 ```
 ./fetch
 ```
+
+## 🛠️ Compilation
+
+Fetch can be compiled using either **g++** or **CMake**.
+
+### Using g++
+
+Compile all source files:
+
+```bash
+g++ src/main.cpp src/system.cpp src/config.cpp src/oslogo.cpp -Iinclude -o fetch
+```
+
+Run Fetch:
+
+```bash
+./fetch
+```
+
+### Using CMake
+
+Create a build directory:
+
+```bash
+cmake -B build
+```
+Build the project:
+
+```bash
+cmake --build build
+```
+Run Fetch:
+
+```bash
+./build/fetch
+```
 🎨 Logo Selection
 
 Fetch automatically selects the logo based on the installed distribution.

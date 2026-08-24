@@ -1,7 +1,3 @@
-#ifndef CONFIG_H
-#define CONFIG_H
-
-
 #include <iostream>
 #include <sys/sysinfo.h>
 #include <fstream>
@@ -14,7 +10,7 @@
 
 std::string configPars(const std::string& found_line)
 {
-    std::ifstream file("config.conf");
+    std::ifstream file("config/config.conf");
 
     if(!file)
     {
@@ -35,5 +31,3 @@ std::string configPars(const std::string& found_line)
 
     return "";
 }
-
-#endif
