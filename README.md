@@ -99,23 +99,47 @@ You can also manually select a logo:
 ./fetch --arch-logo
 ./fetch --fedora-logo
 ./fetch --mint-logo
-📂 Project Structure
-fetch/
-├── fetch.cpp
-├── oslogo.h
-├── system.h
-└── README.md
-fetch.cpp
 ```
-Handles distribution detection, command-line arguments and logo selection.
+📂 Project Structure
+```
+fetch/
+├── config/
+│   └── config.conf
+├── include/
+│   ├── config.h
+│   ├── oslogo.h
+│   └── system.h
+├── src/
+│   ├── config.cpp
+│   ├── main.cpp
+│   ├── oslogo.cpp
+│   └── system.cpp
+├── CMakeLists.txt
+└── README.md
+```
+# src/main.cpp
 
-oslogo.h
+Handles the main program logic, distribution detection, command-line arguments and logo selection.
 
-Contains ASCII logos and the system information layout.
+# src/system.cpp
 
-system.h
+Contains functions used to retrieve system information such as CPU, GPU, RAM, kernel, shell, window manager and uptime.
 
-Contains functions used to retrieve system information.
+# src/oslogo.cpp
+
+Contains ASCII logos for supported Linux distributions.
+
+# src/config.cpp
+
+Handles reading and parsing the Fetch configuration file.
+
+# include/
+
+Contains header files with function declarations and interfaces used by the project.
+
+# config/
+
+Contains the Fetch configuration file.
 
 🛠️ Technologies
 C++
@@ -124,6 +148,7 @@ Linux /sys
 uname()
 sysinfo()
 Standard C++ Library
+CMake
 
 No external libraries are required.
 
@@ -136,8 +161,9 @@ No external libraries are required.
  Add network information
  Add command-line help
  Improve GPU detection
+ Expand configuration system
 📜 License
 
 This project is licensed under the MIT License.
 
-<p align="center"> Made with ❤️ and C++ on Linux </p>
+<p align="center"> Made with ❤️ and C++ on Linux </p> ```
