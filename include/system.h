@@ -18,7 +18,7 @@ float distro_totalram();
 
 std::string distro_shell();
 
-float distro_ram();
+//float distro_ram();
 
 std::string install_packages();
 

@@ -20,17 +20,27 @@ Fetch displays useful system information alongside an ASCII logo of your Linux d
 
 ## 📸 Preview
 
-```text
-          /\
-         /  \               OS:      Arch Linux
-        /    \              Kernel:  7.1.6-arch1-1
-       /      \             WM:      Hyprland
-      /   ,,   \            Shell:   zsh
-     /   |  |   \           CPU:     AMD Ryzen 5 5500U
-    /_-''    ''-_\          GPU:     NVIDIA GeForce GTX 1650
-                            RAM:     6.2 / 15.0 GB
-                            Uptime:  4 h 27 min
+```text                                                                     
+                            user @ arch
 
+           /\             ┌──────────────────────────────────────────┐
+          /  \              󰇺 Chassis: пантера
+         /    \              󰣇 OS: Arch Linux
+        /      \             󰍹 Resolution: U:1920x1080p-0
+       /   ,,   \             Kernel: 7.1.9-arch1-2
+      /   |  |   \        └──────────────────────────────────────────┐
+     /_-''    ''-_\       ┌──────────────────────────────────────────┐
+                            󱗃 WM: Hyprland
+                             Shell: zsh
+                            󰏗 Packages: pacman 888
+                          └──────────────────────────────────────────┘ 
+                          ┌──────────────────────────────────────────┐
+                             CPU: AMD Ryzen 5 5500U with Radeon Graphics
+                            󰊴 GPU: [GeForce GTX 1650 Mobile / Max-Q] (rev a1)
+                             GPU driver: nvidia 610.57.04
+                             RAM: 2.6 / 14.95 GB
+                            󱫐 Uptime: 5h 0min.
+                          └──────────────────────────────────────────┘
                             ● ● ● ● ● ● ● ●
 ```
 🐧 Supported Distributions
@@ -90,16 +100,7 @@ Run Fetch:
 ```bash
 ./build/fetch
 ```
-🎨 Logo Selection
 
-Fetch automatically selects the logo based on the installed distribution.
-
-You can also manually select a logo:
-```
-./fetch --arch-logo
-./fetch --fedora-logo
-./fetch --mint-logo
-```
 📂 Project Structure
 ```
 fetch/
@@ -108,6 +109,7 @@ fetch/
 ├── include/
 │   ├── config.h
 │   ├── oslogo.h
+│   ├── colors.h
 │   └── system.h
 ├── src/
 │   ├── config.cpp

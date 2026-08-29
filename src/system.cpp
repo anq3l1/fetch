@@ -162,24 +162,24 @@ std::string distro_shell()
     return name;
 }
 
-float distro_ram()
-{
-    std::ifstream file("/proc/meminfo");
-    std::string line;
-    std::string aviable_ram = "";
-
-    while(std::getline(file, line))
-    {
-        if(line.find("MemAvailable:    ") == 0)
-            aviable_ram = line.substr(17, 7);
-    }
-
-    float ram = std::stof(aviable_ram) / 1024 / 1024 / 1024;
-
-    float total = distro_totalram();
-
-    return (float) (total - ram);
-}
+//float distro_ram()
+//{
+//    std::ifstream file("/proc/meminfo");
+//    std::string line;
+//    std::string aviable_ram = "";
+//
+//    while(std::getline(file, line))
+//    {
+//        if(line.find("MemAvailable:    ") == 0)
+//            aviable_ram = line.substr(17, 7);
+//    }
+//
+//    float ram = std::stof(aviable_ram) / 1024 / 1024 / 1024;
+//
+//    float total = distro_totalram();
+//
+//    return (float) (total - ram);
+//}
 
 std::string install_packages()
 {
