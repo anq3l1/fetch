@@ -24,7 +24,7 @@ Fetch displays useful system information alongside an ASCII logo of your Linux d
                             user @ arch
 
            /\             ┌──────────────────────────────────────────┐
-          /  \              󰇺 Chassis: пантера
+          /  \               󰇺 Chassis: пантера
          /    \              󰣇 OS: Arch Linux
         /      \             󰍹 Resolution: U:1920x1080p-0
        /   ,,   \             Kernel: 7.1.9-arch1-2

@@ -33,7 +33,7 @@ void arch_logo2()
 {
 
   std::cout << 
-     R"(
+  R"(                            )" << user() << " : " << hostname() << R"(
            /\             ┌──────────────────────────────────────────┐
           /  \              󰇺 Chassis: )" << product_name() << R"(
          /    \             󰣇 OS: )" << distro_name() << R"(
@@ -61,7 +61,7 @@ void arch_logo_color()
     << CYAN << R"(
            /\             ┌──────────────────────────────────────────┐
           /  \              )"
-    << RESET << RED << "󰇺 Chassis: " << RESET << product_name() << R"(
+    << RESET << RED << " 󰇺 Chassis: " << RESET << product_name() << R"(
          /    \              )"
     << RED << "󰣇 OS: " << RESET << distro_name() << R"(
         /      \             )"
