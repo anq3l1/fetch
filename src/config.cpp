@@ -7,6 +7,7 @@
 #include <memory>
 #include "oslogo.h"
 #include "system.h"
+#include "colors.h"
 
 std::string configPars(const std::string& found_line)
 {
@@ -28,6 +29,9 @@ std::string configPars(const std::string& found_line)
 
         return line.substr(pos + found_line.length());
     }
+
+    if(line != "true" || line != "false")
+        std::cerr << RED << "[!] Error check your config file!\n";
 
     return "";
 }
