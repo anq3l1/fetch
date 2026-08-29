@@ -166,7 +166,7 @@ float distro_ram()
     if(sysinfo(&si) == 0)
     {
         return (float)(si.totalram - si.freeram)
-               / 1024 / 1024 / 1024 / 3;
+               / 1024 / 1024 / 1024 / 2;
     }
 
     return 0;

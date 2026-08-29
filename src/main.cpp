@@ -32,7 +32,5 @@ int main(int argc, char* argv[])
             mint_logo();
     }
 
-
-    
     return 0;
 }
