@@ -60,37 +60,22 @@ void arch_logo_color()
 
     << CYAN << R"(
            /\             ┌──────────────────────────────────────────┐
-          /  \              )"
-    << RESET << RED << " 󰇺 Chassis: " << RESET << product_name() << R"(
-         /    \              )"
-    << RED << "󰣇 OS: " << RESET << distro_name() << R"(
-        /      \             )"
-    << YELLOW << "󰍹 Resolution: " << RESET << screen_resolution() << R"(
-       /   ,,   \            )"
-    << YELLOW << " Kernel: " << RESET << kernel_info() << R"(
+          /  \              )" << RESET << RED << " 󰇺 Chassis: " << RESET << product_name() << R"(
+         /    \              )" << RED << "󰣇 OS: " << RESET << distro_name() << R"(
+        /      \             )" << YELLOW << "󰍹 Resolution: " << RESET << screen_resolution() << R"(
+       /   ,,   \            )" << YELLOW << " Kernel: " << RESET << kernel_info() << R"(
       /   |  |   \        └──────────────────────────────────────────┐
      /_-''    ''-_\       ┌──────────────────────────────────────────┐
-                            )"
-    << CYAN << "󱗃 WM: " << RESET << distr_wm() << R"(
-                            )"
-    << CYAN << " Shell: " << RESET << distro_shell() << R"(
-                            )"
-    << CYAN << "󰏗 Packages: pacman " << RESET << install_packages() << R"(
+                            )" << CYAN << "󱗃 WM: " << RESET << distr_wm() << R"(
+                            )" << CYAN << " Shell: " << RESET << distro_shell() << R"(
+                            )" << CYAN << "󰏗 Packages: pacman " << RESET << install_packages() << R"(
                           └──────────────────────────────────────────┘ 
                           ┌──────────────────────────────────────────┐
-                            )"
-    << GREEN << " CPU: " << RESET << distro_cpu() << R"(
-                            )"
-    << GREEN << "󰊴 GPU: " << RESET << getGpuName() << R"(
-                            )"
-    << GREEN << " GPU driver: " << RESET << version_driver_nvidia() << R"(
-                            )"
-    << GREEN << " RAM: " << RESET 
-    << "" << " / " 
-    << std::setprecision(4) << distro_totalram() 
-    << " GB" << R"(
-                            )"
-    << GREEN << "󱫐 Uptime: " << RESET << sys_uptime() << R"(
+                            )" << GREEN << " CPU: " << RESET << distro_cpu() << R"(
+                            )" << GREEN << "󰊴 GPU: " << RESET << getGpuName() << R"(
+                            )" << GREEN << " GPU driver: " << RESET << version_driver_nvidia() << R"(
+                            )" << GREEN << " RAM: " << RESET << "" << " / " << std::setprecision(4) << distro_totalram() << " GB" << R"(
+                            )" << GREEN << "󱫐 Uptime: " << RESET << sys_uptime() << R"(
                           └──────────────────────────────────────────┘
                             )"
     << RED << "● " 

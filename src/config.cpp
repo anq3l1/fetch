@@ -9,7 +9,7 @@
 #include "system.h"
 #include "colors.h"
 
-std::string configPars(const std::string& found_line)
+bool configPars(const std::string& found_line)
 {
     std::ifstream file("config/config.conf");
 
@@ -19,6 +19,7 @@ std::string configPars(const std::string& found_line)
     }
 
     std::string line;
+    size_t pos;
 
     while (std::getline(file, line))
     {
@@ -26,12 +27,14 @@ std::string configPars(const std::string& found_line)
 
         if (pos == std::string::npos)
             continue;
-
-        return line.substr(pos + found_line.length());
     }
 
-    if(line != "true" || line != "false")
-        std::cerr << RED << "[!] Error check your config file!\n";
+    if(line.substr(pos + found_line.length()) == "true")
+        return true;
+    else if(line.substr(pos + found_line.length()) == "false")
+        return false;
+    else
+        return false;
 
-    return "";
+    return false;
 }

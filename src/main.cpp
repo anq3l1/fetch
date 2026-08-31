@@ -13,11 +13,11 @@ int main(int argc, char* argv[])
 { 
     if(argc == 1)
     {
-        if(configPars("minimalism = ") == "false")
+        if(configPars("minimalism = ") == false)
         {
-            if(distro_name() == "Arch Linux" && configPars("colorate = ") == "false")
+            if(distro_name() == "Arch Linux" && configPars("colorate = ") == false)
                 arch_logo();
-            else if(distro_name() == "Arch Linux" && configPars("colorate = ") == "true")
+            else if(distro_name() == "Arch Linux" && configPars("colorate = ") == true)
                 arch_logo_color();
             //else if(distro_name() == "Fedora Linux")
                 //fedora_logo();
@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
             //else if(distro_name() == "Linux Mint")
                 //mint_logo();
         }
-        else if(configPars("minimalism = ") == "true")
+        else if(configPars("minimalism = "))
         {
             if(distro_name() == "Arch Linux")
                 arch_logo2();

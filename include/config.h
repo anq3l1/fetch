@@ -1,3 +1,5 @@
 #pragma once
 
-std::string configPars(const std::string& found_line);
+#include <string>
+
+bool configPars(const std::string& found_line);
