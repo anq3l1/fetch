@@ -23,7 +23,7 @@ void arch_logo()
                              CPU: )" << distro_cpu() << R"(
                             󰊴 GPU: )" << getGpuName() << R"(
                              GPU driver: )" << version_driver_nvidia() << R"(
-                             RAM: )" << "" << " / " << std::setprecision(4) << distro_totalram() << " GB" << R"(
+                             RAM: )" << std::setprecision(3) << distro_ram() << " / " << std::setprecision(4) << distro_totalram() << " GB" << R"(
                             󱫐 Uptime: )" << sys_uptime() << R"(
                           └──────────────────────────────────────────┘
                             ● ● ● ● ● ● ● ●)" << '\n';
@@ -44,7 +44,7 @@ void arch_logo2()
                              CPU: )" << distro_cpu() << R"(
                             󰊴 GPU: )" << getGpuName() << R"(
                              GPU driver: )" << version_driver_nvidia() << R"(
-                             RAM: )" << "" << " / " << std::setprecision(4) << distro_totalram() << " GB" << R"(
+                             RAM: )" << std::setprecision(4) << distro_ram() << " / " << std::setprecision(4) << distro_totalram() << " GB" << R"(
                             󱫐 Uptime: )" << sys_uptime() << R"(
                           └──────────────────────────────────────────┘
                             ● ● ● ● ● ● ● ●)" << '\n';
@@ -74,7 +74,7 @@ void arch_logo_color()
                             )" << GREEN << " CPU: " << RESET << distro_cpu() << R"(
                             )" << GREEN << "󰊴 GPU: " << RESET << getGpuName() << R"(
                             )" << GREEN << " GPU driver: " << RESET << version_driver_nvidia() << R"(
-                            )" << GREEN << " RAM: " << RESET << "" << " / " << std::setprecision(4) << distro_totalram() << " GB" << R"(
+                            )" << GREEN << " RAM: " << RESET << std::setprecision(3) << distro_ram() << " / " << std::setprecision(4) << distro_totalram() << " GB" << R"(
                             )" << GREEN << "󱫐 Uptime: " << RESET << sys_uptime() << R"(
                           └──────────────────────────────────────────┘
                             )"

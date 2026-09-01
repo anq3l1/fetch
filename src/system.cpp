@@ -31,9 +31,10 @@ std::string getGpuName()
     
 }
 
-int sys_uptime_minute()
+std::string sys_uptime()
 {
     struct sysinfo si;
+
     int uptime = 0;
 
     if(sysinfo(&si) == 0)
@@ -41,32 +42,8 @@ int sys_uptime_minute()
         uptime = si.uptime / 60;
     }
 
-    return uptime;
-}
-
-int sys_uptime_hours()
-{
-    struct sysinfo si;
-    int uptime = 0;
-
-    if(sysinfo(&si) == 0)
-    {
-        uptime = si.uptime / 60 / 60;
-    }
-
-    return uptime;
-}
-
-std::string sys_uptime()
-{
-    int minutes = sys_uptime_minute();
-    int hours = sys_uptime_hours();
-
-    if(minutes > 59)
-    {
-        ++hours;
-        minutes = 0;
-    }
+    int hours = uptime / 60;
+    int minutes = uptime % 60;
 
     std::string line_uptime = std::format("{}h {}min.", hours, minutes);
 
@@ -141,14 +118,20 @@ std::string distro_cpu()
 
 float distro_totalram()
 {
-    struct sysinfo si;
+    std::ifstream file("/proc/meminfo");
 
-    if(sysinfo(&si) == 0)
+    std::string line = "";
+    std::string result = "";
+
+    while(std::getline(file, line))
     {
-        return (float)si.totalram * si.mem_unit / 1024 / 1024 / 1024;
-    }
-
-    return 0;
+        if(line.rfind("MemTotal:", 0) == 0)
+            result = line.substr(9);
+    };
+    
+    float mem_total = std::stof(result) / 1024.0 / 1024.0;
+    
+    return mem_total;
 }
 
 std::string distro_shell()
@@ -162,24 +145,25 @@ std::string distro_shell()
     return name;
 }
 
-//float distro_ram()
-//{
-//    std::ifstream file("/proc/meminfo");
-//    std::string line;
-//    std::string aviable_ram = "";
-//
-//    while(std::getline(file, line))
-//    {
-//        if(line.find("MemAvailable:    ") == 0)
-//            aviable_ram = line.substr(17, 7);
-//    }
-//
-//    float ram = std::stof(aviable_ram) / 1024 / 1024 / 1024;
-//
-//    float total = distro_totalram();
-//
-//    return (float) (total - ram);
-//}
+float distro_ram()
+{
+    std::ifstream file("/proc/meminfo");
+
+    std::string line = "";
+    std::string result = "";
+
+    float mem_total = distro_totalram();
+
+    while(std::getline(file, line))
+    {
+        if(line.rfind("MemAvailable:", 0) == 0)
+            result = line.substr(13);
+    };
+    
+    float mem_available = std::stof(result) / 1024.0 / 1024.0;
+    
+    return mem_total - mem_available;
+}
 
 std::string install_packages()
 {
