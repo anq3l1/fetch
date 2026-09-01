@@ -21,25 +21,26 @@ Fetch displays useful system information alongside an ASCII logo of your Linux d
 ## 📸 Preview
 
 ```text                                                                     
-                            user @ arch
+                            angel @ arch
 
            /\             ┌──────────────────────────────────────────┐
-          /  \               󰇺 Chassis: пантера
+          /  \               󰇺 Chassis: ROG
          /    \              󰣇 OS: Arch Linux
         /      \             󰍹 Resolution: U:1920x1080p-0
-       /   ,,   \             Kernel: 7.1.9-arch1-2
+       /   ,,   \             Kernel: 7.2.2-arch1-1
       /   |  |   \        └──────────────────────────────────────────┐
      /_-''    ''-_\       ┌──────────────────────────────────────────┐
                             󱗃 WM: Hyprland
                              Shell: zsh
-                            󰏗 Packages: pacman 888
+                            󰏗 Packages: pacman 935
                           └──────────────────────────────────────────┘ 
                           ┌──────────────────────────────────────────┐
-                             CPU: AMD Ryzen 5 5500U with Radeon Graphics
-                            󰊴 GPU: [GeForce GTX 1650 Mobile / Max-Q] (rev a1)
+                             CPU: AMD Ryzen 5 7500 with Radeon Graphics
+                            󰊴 GPU: [GeForce GTX 1650] (rev a1)
                              GPU driver: nvidia 610.57.04
-                             RAM: 2.6 / 14.95 GB
-                            󱫐 Uptime: 5h 0min.
+                             RAM: 6.04 / 14.95 GB
+                             Disk: 476 GB
+                            󱫐 Uptime: 1h 38min.
                           └──────────────────────────────────────────┘
                             ● ● ● ● ● ● ● ●
 ```
@@ -155,17 +156,6 @@ Contains the Fetch configuration file.
 
 > No external libraries are required.
 
-## 🚧 Roadmap
-
-- [ ] Add more Linux distributions
-- [ ] Improve distribution detection
-- [ ] Add color themes
-- [ ] Add disk usage
-- [ ] Add battery information
-- [ ] Add network information
-- [ ] Add command-line help
-- [ ] Improve GPU detection
-- [ ] Expand configuration system
 
 ## 📜 License
 

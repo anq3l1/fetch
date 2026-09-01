@@ -24,6 +24,7 @@ void arch_logo()
                             󰊴 GPU: )" << getGpuName() << R"(
                              GPU driver: )" << version_driver_nvidia() << R"(
                              RAM: )" << std::setprecision(3) << distro_ram() << " / " << std::setprecision(4) << distro_totalram() << " GB" << R"(
+                             Disk: )" << show_disk() << " GB" << R"(
                             󱫐 Uptime: )" << sys_uptime() << R"(
                           └──────────────────────────────────────────┘
                             ● ● ● ● ● ● ● ●)" << '\n';
@@ -75,6 +76,7 @@ void arch_logo_color()
                             )" << GREEN << "󰊴 GPU: " << RESET << getGpuName() << R"(
                             )" << GREEN << " GPU driver: " << RESET << version_driver_nvidia() << R"(
                             )" << GREEN << " RAM: " << RESET << std::setprecision(3) << distro_ram() << " / " << std::setprecision(4) << distro_totalram() << " GB" << R"(
+                            )" << GREEN << " Disk: " << RESET << show_disk() << " GB" << R"(
                             )" << GREEN << "󱫐 Uptime: " << RESET << sys_uptime() << R"(
                           └──────────────────────────────────────────┘
                             )"

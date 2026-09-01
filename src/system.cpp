@@ -243,3 +243,13 @@ std::string user()
     
     return user;
 }
+
+long long show_disk()
+{
+    std::ifstream file("/sys/block/nvme0n1/size");
+
+    long long sectors;
+    file >> sectors;
+
+    return (sectors * 512) / (1024.0 * 1024.0 * 1024.0);
+}

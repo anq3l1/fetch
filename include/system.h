@@ -33,3 +33,5 @@ std::string sys_uptime();
 std::string hostname();
 
 std::string user();
+
+long long show_disk();
