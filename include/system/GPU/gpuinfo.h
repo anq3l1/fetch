@@ -7,9 +7,9 @@ class GpuInfo
 public:
     GpuInfo() = default;
 
-   std::string getGpuName();
+   static std::string getGpuName();
 
-   std::string version_driver_nvidia();
+   static std::string version_driver_nvidia();
 
-   std::string resolution();
+   static std::string resolution();
 };

@@ -7,18 +7,18 @@ class User
 public:
     User() = default;
 
-    std::string userl();
-    std::string hostname();
-    std::string distro_name();
-    std::string product_name();
-    std::string install_packages();
-    std::string sys_uptime();
+    static std::string userl();
+    static std::string hostname();
+    static std::string distro_name();
+    static std::string product_name();
+    static std::string install_packages();
+    static std::string sys_uptime();
 
-    std::string waymang();
+    static std::string waymang();
 
-    std::string shell();
+    static std::string shell();
 
-    std::string kernel();
+    static std::string kernel();
 };
 
 extern User user;

@@ -12,43 +12,16 @@
 User usr;
 
 int main(int argc, char* argv[])
-{ 
-    if(argc == 1)
+{
+    if (argc == 1)
     {
-        if(configPars("minimalism = ") == false)
+        if (configPars("minimalism = ") == false)
         {
-            if(usr.distro_name() == "Arch Linux" && configPars("colorate = ") == false)
-                arch_logo();
-            //else if(user.distro_name() == "Arch Linux" && configPars("colorate = ") == true)
-                //arch_logo_color();
-            //else if(distro_name() == "Fedora Linux")
-                //fedora_logo();
-
-            //else if(distro_name() == "Linux Mint")
-                //mint_logo();
-        }
-        else if(configPars("minimalism = "))
-        {
-            //if(user.distro_name() == "Arch Linux")
-                //arch_logo2();
-
-            //else if(distro_name() == "Fedora Linux")
-                //fedora_logo();
-
-            //else if(distro_name() == "Linux Mint")
-                //mint_logo();
-        }
-
+            if (usr.distro_name() == "Arch Linux" &&
+                configPars("colorate = ") == true)
+            {
+                print_fetch_linux();
+            }
+        } 
     }
-    else if(argc > 1)
-    {
-        //if(std::string(argv[1]) == "--arch-logo")
-            //arch_logo();
-        //if(std::string(argv[1]) == "--fedora-logo")
-        //    fedora_logo();
-        //if(std::string(argv[1]) == "--mint-logo")
-        //    mint_logo();
-    }
-
-    return 0;
 }

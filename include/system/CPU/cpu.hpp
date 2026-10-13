@@ -7,5 +7,5 @@ class CPU
 public:
     CPU() = default;
 
-    std::string distro_cpu();
+    static std::string distro_cpu();
 };

@@ -5,9 +5,9 @@ class Ram
 public:
     Ram() = default;
 
-    float totalram();
+    static float totalram();
 
-    float usedram();
+    static float usedram();
 };
 
 class Disk
@@ -15,6 +15,6 @@ class Disk
 public:
     Disk() = default;
 
-    long long disk_memory();
+    static long long disk_memory();
 };
 
