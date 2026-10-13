@@ -6,7 +6,6 @@
 #include <sys/utsname.h>
 #include <memory>
 #include "oslogo.h"
-#include "system.h"
 #include "colors.h"
 
 bool configPars(const std::string& found_line)

@@ -9,16 +9,26 @@
 #include "config.h"
 #include "system/user/user.hpp"
 
-User usr;
+std::string getOS()
+{
+#if defined(__linux__)
+    return "Linux";
+#elif defined(_WIN32)
+    return "Windows";
+#elif defined(__APPLE__)
+    return "macOS";
+#else
+    return "Unknown";
+#endif
+}
 
 int main(int argc, char* argv[])
 {
-    if (argc == 1)
+    if (argc == 1 && getOS() == "Linux")
     {
         if (configPars("minimalism = ") == false)
         {
-            if (usr.distro_name() == "Arch Linux" &&
-                configPars("colorate = ") == true)
+            if (configPars("colorate = ") == true)
             {
                 print_fetch_linux();
             }
