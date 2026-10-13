@@ -11,15 +11,12 @@
 
 bool configPars(const std::string& found_line)
 {
-    std::ifstream file("config/config.conf");
+    std::ifstream file("config.conf");
 
-    if(!file)
-    {
-        std::cerr << "Failed to open config.conf\n";
-    }
+    if (!file)
+        return false;
 
     std::string line;
-    size_t pos;
 
     while (std::getline(file, line))
     {
@@ -27,14 +24,25 @@ bool configPars(const std::string& found_line)
 
         if (pos == std::string::npos)
             continue;
-    }
 
-    if(line.substr(pos + found_line.length()) == "true")
-        return true;
-    else if(line.substr(pos + found_line.length()) == "false")
+        std::string value =
+            line.substr(pos + found_line.length());
+
+        size_t first = value.find_first_not_of(" \t");
+
+        if (first == std::string::npos)
+            return false;
+
+        value = value.substr(first);
+
+        if (value == "true")
+            return true;
+
+        if (value == "false")
+            return false;
+
         return false;
-    else
-        return false;
+    }
 
     return false;
 }

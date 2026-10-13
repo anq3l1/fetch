@@ -6,8 +6,10 @@
 #include <sys/utsname.h>
 #include <memory>
 #include "oslogo.h"
-#include "system.h"
 #include "config.h"
+#include "system/user/user.hpp"
+
+User usr;
 
 int main(int argc, char* argv[])
 { 
@@ -15,10 +17,10 @@ int main(int argc, char* argv[])
     {
         if(configPars("minimalism = ") == false)
         {
-            if(distro_name() == "Arch Linux" && configPars("colorate = ") == false)
+            if(usr.distro_name() == "Arch Linux" && configPars("colorate = ") == false)
                 arch_logo();
-            else if(distro_name() == "Arch Linux" && configPars("colorate = ") == true)
-                arch_logo_color();
+            //else if(user.distro_name() == "Arch Linux" && configPars("colorate = ") == true)
+                //arch_logo_color();
             //else if(distro_name() == "Fedora Linux")
                 //fedora_logo();
 
@@ -27,8 +29,8 @@ int main(int argc, char* argv[])
         }
         else if(configPars("minimalism = "))
         {
-            if(distro_name() == "Arch Linux")
-                arch_logo2();
+            //if(user.distro_name() == "Arch Linux")
+                //arch_logo2();
 
             //else if(distro_name() == "Fedora Linux")
                 //fedora_logo();
@@ -40,8 +42,8 @@ int main(int argc, char* argv[])
     }
     else if(argc > 1)
     {
-        if(std::string(argv[1]) == "--arch-logo")
-            arch_logo();
+        //if(std::string(argv[1]) == "--arch-logo")
+            //arch_logo();
         //if(std::string(argv[1]) == "--fedora-logo")
         //    fedora_logo();
         //if(std::string(argv[1]) == "--mint-logo")
