@@ -1,78 +1,110 @@
 # Fetch
 
-A small and lightweight system information fetcher for Linux, written in **C++**.
+A lightweight, cross-platform system information fetcher written in **C++**.
 
-Fetch displays useful system information alongside an ASCII logo of your Linux distribution.
+Fetch displays essential system information alongside an ASCII logo, providing a clean and customizable overview of your system.
+
+Currently, Fetch supports **Linux and Windows**. Cross-platform compatibility is a work in progress, and some features may behave differently depending on the operating system.
 
 ## ✨ Features
 
-- 🐧 Automatic distribution detection
-- 🎨 Distribution-specific ASCII logos
+- 🐧 Automatic operating system and distribution detection
+- 🎨 OS-specific ASCII logos
 - 🧠 CPU information
-- 🎮 GPU information
-- 🖥️ Window Manager
-- 🐚 Shell
+- 🎮 GPU detection and graphics card information
+- ⚙️ GPU driver information
+- 🖥️ Display resolution
+- 🪟 Window manager detection on Linux
+- 🐚 Shell detection
 - 💾 RAM usage
+- 💿 Disk information
 - ⏱️ System uptime
-- ⚙️ Kernel information
+- 🔧 Kernel and system version information
+- 📦 Installed package count on supported Linux distributions
 - 🚀 Lightweight and fast
-- 🛠️ Written in C++
+- 🛠️ Written in modern C++
+
+## 🖥️ Supported Platforms
+
+| Platform | Status |
+|---|---|
+| Linux | Supported |
+| Windows | Supported |
+| macOS | Planned |
+
+Fetch is designed with cross-platform compatibility in mind, using platform-specific implementations where necessary.
+
+Linux-specific functionality relies on system interfaces such as `/proc` and `/sys`, while Windows uses its own system APIs and mechanisms to retrieve hardware and operating system information.
+
+Some features may be unavailable or behave differently across platforms.
 
 ## 📸 Preview
 
-```text                                                                     
-                            angel @ arch
+### 🐧 Linux (Arch Linux)
 
-           /\             ┌──────────────────────────────────────────┐
-          /  \               󰇺 Chassis: ROG
-         /    \              󰣇 OS: Arch Linux
-        /      \             󰍹 Resolution: U:1920x1080p-0
-       /   ,,   \             Kernel: 7.2.2-arch1-1
-      /   |  |   \        └──────────────────────────────────────────┐
-     /_-''    ''-_\       ┌──────────────────────────────────────────┐
-                            󱗃 WM: Hyprland
-                             Shell: zsh
-                            󰏗 Packages: pacman 935
-                          └──────────────────────────────────────────┘ 
-                          ┌──────────────────────────────────────────┐
-                             CPU: AMD Ryzen 5 7500 with Radeon Graphics
-                            󰊴 GPU: [GeForce GTX 1650] (rev a1)
-                             GPU driver: nvidia 610.57.04
+```text
+              angel @ arch
+
+        /\             ┌──────────────────────────────────────┐
+       /  \               󰣇 OS: Arch Linux
+      /    \              󰍹 Resolution: 1920x1080
+     /      \              Kernel: Linux 6.x
+    /   ,,   \             󰍹 WM: Hyprland
+   /   |  |   \             Shell: zsh
+  /\_-''    ''-\_\         󰏗 Packages: pacman 935
+                          └──────────────────────────────────────┘
+                          ┌──────────────────────────────────────┐
+                             CPU: AMD Ryzen 5 5500U
+                            󰊴 GPU: NVIDIA GeForce GTX 1650
+                             GPU Driver: NVIDIA
                              RAM: 6.04 / 14.95 GB
                              Disk: 476 GB
-                            󱫐 Uptime: 1h 38min.
-                          └──────────────────────────────────────────┘
+                            󱫐 Uptime: 1h 38min
+                          └──────────────────────────────────────┘
                             ● ● ● ● ● ● ● ●
 ```
-🐧 Supported Distributions
 
-Currently supported:
+### 🪟 Windows
 
-Arch Linux
-Fedora Linux
-Linux Mint
+```text
+             angel @ Windows
 
-More distributions can be added in the future.
+        ┌──────────────────────────────────────────┐
+        │           System Information             │
+        └──────────────────────────────────────────┘
 
-🔧 Installation
+        OS:          Windows 11
+        Version:     25H2
+        Resolution:  1920x1080
+        Shell:       PowerShell
+        ────────────────────────────────────────────
+        CPU:         AMD Ryzen 5 5500U
+        GPU:         NVIDIA GeForce GTX 1650
+        GPU Driver:  NVIDIA
+        RAM:         6.04 / 14.95 GB
+        Disk:        476 GB
+        Uptime:      1h 38min
+        ────────────────────────────────────────────
+```
+
+*Examples are illustrative. Actual output and available information depend on your hardware, operating system, and Fetch configuration.*
+
+## 🔧 Installation
 
 Clone the repository:
-```
+
+```bash
 git clone https://github.com/anq3l1/fetch.git
 cd fetch
 ```
-Run:
-```
-./fetch
-```
+
+Build the project using one of the supported compilation methods below.
 
 ## 🛠️ Compilation
 
-Fetch can be compiled using either **g++** or **CMake**.
-
 ### Using g++
 
-Compile all source files:
+On Linux:
 
 ```bash
 g++ src/main.cpp src/system.cpp src/config.cpp src/oslogo.cpp -Iinclude -o fetch
@@ -86,79 +118,48 @@ Run Fetch:
 
 ### Using CMake
 
-Create a build directory:
-
 ```bash
 cmake -B build
-```
-Build the project:
-
-```bash
 cmake --build build
 ```
-Run Fetch:
+
+Run on Linux:
 
 ```bash
 ./build/fetch
 ```
 
-📂 Project Structure
-```
-fetch/
-├── config/
-│   └── config.conf
-├── include/
-│   ├── config.h
-│   ├── oslogo.h
-│   ├── colors.h
-│   └── system.h
-├── src/
-│   ├── config.cpp
-│   ├── main.cpp
-│   ├── oslogo.cpp
-│   └── system.cpp
-├── CMakeLists.txt
-└── README.md
-```
-# src/main.cpp
+On Windows, use a compatible C++ compiler and CMake installation. Build commands and executable paths may vary depending on the selected generator and toolchain.
 
-Handles the main program logic, distribution detection, command-line arguments and logo selection.
+## 🔄 Cross-platform Development
 
-# src/system.cpp
+Fetch is being developed to work across different operating systems without relying on Linux-specific functionality everywhere.
 
-Contains functions used to retrieve system information such as CPU, GPU, RAM, kernel, shell, window manager and uptime.
+The project uses conditional compilation and platform-specific implementations to handle differences between Linux and Windows.
 
-# src/oslogo.cpp
+Current development priorities include:
 
-Contains ASCII logos for supported Linux distributions.
-
-# src/config.cpp
-
-Handles reading and parsing the Fetch configuration file.
-
-# include/
-
-Contains header files with function declarations and interfaces used by the project.
-
-# config/
-
-Contains the Fetch configuration file.
+- Improving GPU detection and handling systems with multiple graphics adapters
+- Correctly identifying GPU models and drivers
+- Improving hardware information retrieval on Windows
+- Implementing consistent system information output across platforms
+- Adapting the output layout to Windows and Linux environments
+- Improving operating system and version detection
+- Ensuring graceful handling of unavailable system information
 
 ## 🛠️ Technologies
 
 - **C++**
-- **Linux `/proc`**
-- **Linux `/sys`**
-- **`uname()`**
-- **`sysinfo()`**
 - **Standard C++ Library**
 - **CMake**
+- **Linux `/proc` and `/sys` interfaces**
+- **`uname()` and `sysinfo()` on supported Unix-like systems**
+- **Windows system APIs**
 
-> No external libraries are required.
-
+No external libraries are currently required for the core functionality.
 
 ## 📜 License
 
 This project is licensed under the **MIT License**.
 
-<p align="center"> Made with ❤️ and C++ on Linux </p> ```
+<p align="center">Made with ❤️ and C++</p>
