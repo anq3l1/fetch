@@ -6,10 +6,19 @@
 #include <memory>
 #include <string>
 #include <vector>
+#ifdef __linux__
 #include <sys/utsname.h>
 #include <sys/sysinfo.h>
+#endif
+
+#ifdef _WIN32
+#include <windows.h>
+#include <intrin.h>
+#endif
+
 #include <unistd.h>
 
+#ifndef _WIN32
 std::string what_is_distro()
 {
     std::vector<std::string> distros = {
@@ -38,9 +47,13 @@ std::string what_is_distro()
 
     return "";
 }
+#endif
 
 std::string User::distro_name()
 {
+#ifdef _WIN32
+    return "Microsoft Windows";
+#else
     std::ifstream file("/etc/os-release");
     std::string line;
     std::string name;
@@ -60,6 +73,7 @@ std::string User::distro_name()
         
     
     return name;
+#endif
 }
 
 std::string User::hostname()
@@ -90,6 +104,23 @@ std::string User::userl()
 
 std::string User::product_name()
 {
+#ifdef _WIN32
+    char product_name[256] = {};
+    DWORD size = sizeof(product_name);
+
+    if (RegGetValueA(HKEY_LOCAL_MACHINE,
+                     "HARDWARE\\DESCRIPTION\\System\\BIOS",
+                     "SystemProductName",
+                     RRF_RT_REG_SZ | RRF_RT_REG_EXPAND_SZ,
+                     nullptr,
+                     product_name,
+                     &size) != ERROR_SUCCESS)
+    {
+        return "";
+    }
+
+    return product_name;
+#else
     std::ifstream file("/sys/class/dmi/id/product_name");
 
     if(!file.is_open())
@@ -103,8 +134,10 @@ std::string User::product_name()
     }
 
     return product_name;
+#endif
 }
 
+#ifndef _WIN32
 std::string User::install_packages()
 {
     const std::string distro = what_is_distro();
@@ -167,17 +200,26 @@ std::string User::install_packages()
 
     return result;
 }
+#else
+std::string User::install_packages()
+{
+    return "N/A";
+}
+#endif
 
 std::string User::sys_uptime()
 {
-    struct sysinfo si;
-
     int uptime = 0;
+#ifndef _WIN32
+    struct sysinfo si;
 
     if(sysinfo(&si) == 0)
     {
         uptime = si.uptime / 60; 
     }
+#endif
+
+    uptime = GetTickCount64() / 1000;
 
     int hours = uptime / 60;
     int minutes = uptime % 60;
@@ -190,16 +232,20 @@ std::string User::sys_uptime()
 
 std::string User::waymang()
 {
+#ifdef _WIN32
+    return "Desktop Window Manager";
+#else
     const char* desktop = std::getenv("XDG_CURRENT_DESKTOP");
-
-    if (desktop != nullptr && *desktop != '\0')
-        return desktop;
-
-    return "Unknown";
+    return desktop ? desktop : "Unknown";
+#endif
 }
 
 std::string User::shell()
 {
+#ifdef _WIN32
+    const char* shell = std::getenv("COMSPEC");
+    return shell ? shell : "cmd.exe";
+#else
     pid_t ppid = getppid();
     std::ifstream file("/proc/" + std::to_string(ppid) + "/comm");
     std::string name;
@@ -207,10 +253,28 @@ std::string User::shell()
     std::getline(file, name);
     
     return name;
+#endif
 }
 
 std::string User::kernel()
 {
+#ifdef _WIN32
+    OSVERSIONINFOA version{};
+    version.dwOSVersionInfoSize = sizeof(version);
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable: 4996)
+#endif
+    if (GetVersionExA(&version)) {
+        return std::to_string(version.dwMajorVersion) + "." + std::to_string(version.dwMinorVersion) +
+               " (build " + std::to_string(version.dwBuildNumber) + ")";
+    }
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+    return "Windows";
+#else
+
     struct utsname buffer;
     std::string release;
 
@@ -220,4 +284,5 @@ std::string User::kernel()
     }
 
     return release;
+#endif
 }

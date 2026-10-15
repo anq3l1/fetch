@@ -1,5 +1,5 @@
 #pragma once
 
 void arch_logo();
-void print_fetch_linux();
+void print_fetch();
 

@@ -1,9 +1,11 @@
 #include <iostream>
+#ifdef __linux__
 #include <sys/sysinfo.h>
+#include <sys/utsname.h>
+#endif
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <sys/utsname.h>
 #include <memory>
 #include "oslogo.h"
 #include "colors.h"

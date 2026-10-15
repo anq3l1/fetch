@@ -2,9 +2,31 @@
 #include <fstream>
 #include "system/CPU/cpu.hpp"
 #include <unistd.h>
+#ifdef _WIN32
+#include <windows.h>
+#include <intrin.h>
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#endif
+
 
 std::string CPU::distro_cpu()
 {
+#ifdef _WIN32
+    char name[256] = {};
+    DWORD size = sizeof(name);
+    if (RegGetValueA(HKEY_LOCAL_MACHINE,
+                     "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0",
+                     "ProcessorNameString", RRF_RT_REG_SZ, nullptr, name, &size) == ERROR_SUCCESS)
+    {
+        return "";
+    }
+    SYSTEM_INFO info{};
+    GetSystemInfo(&info);
+
+    return std::to_string(info.dwNumberOfProcessors) + " logical processors";
+#else
     std::ifstream file("/proc/cpuinfo");
     std::string line;
     std::string cpu_name;
@@ -17,7 +39,8 @@ std::string CPU::distro_cpu()
     
     if (cpu_name.front() == ' ')
         cpu_name = cpu_name.substr(1, cpu_name.size() - 1);
-    
-    return cpu_name;
+
+    return cpu_name; 
+#endif 
     
 }

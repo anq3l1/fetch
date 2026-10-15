@@ -31,20 +31,20 @@ std::vector<std::string> parse_logo(const std::string& logo)
     return lines;
 }
 
-std::string get_distro_logo(const std::string& distro)
+std::string get_logo(const std::string& distro)
 {
     if (distro == "Arch Linux")
         return arch;
 
-    //if (distro == "Fedora Linux")
-    //    return fedora;
+    if (distro == "Microsoft Windows")
+        return windows;
 
     return "Unknown Linux distribution";
 }
 
-void print_fetch_linux()
+void print_fetch()
 {
-    std::vector<std::string> logo = parse_logo(get_distro_logo(User::distro_name()));
+    std::vector<std::string> logo = parse_logo(get_logo(User::distro_name()));
 
     std::vector<std::string> info = {
         std::string(BLUE) + User::userl() + RESET + " @ " +
@@ -56,7 +56,7 @@ void print_fetch_linux()
         "   Kernel: " + User::kernel(),
         "  󱗃 WM: " + User::waymang(),
         "   Shell: " + User::shell(),
-        "  󰏗 Packages: pacman " + User::install_packages(),
+        "  󰏗 Packages: " + User::install_packages(),
         "└──────────────────────────────────────────┘",
         "┌──────────────────────────────────────────┐",
         "   CPU: " + CPU::distro_cpu(),

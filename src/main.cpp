@@ -1,9 +1,13 @@
 #include <iostream>
+
+#ifdef __linux__
 #include <sys/sysinfo.h>
+#include <sys/utsname.h>
+#endif
+
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <sys/utsname.h>
 #include <memory>
 #include "oslogo.h"
 #include "config.h"
@@ -30,7 +34,17 @@ int main(int argc, char* argv[])
         {
             if (configPars("colorate = ") == true)
             {
-                print_fetch_linux();
+                print_fetch();
+            }
+        } 
+    }
+    else if (argc == 1 && getOS() == "Windows")
+    {
+        if (configPars("minimalism = ") == false)
+        {
+            if (configPars("colorate = ") == true)
+            {
+                print_fetch();
             }
         } 
     }
