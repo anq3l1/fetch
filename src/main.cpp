@@ -30,22 +30,10 @@ int main(int argc, char* argv[])
 {
     if (argc == 1 && getOS() == "Linux")
     {
-        if (configPars("minimalism = ") == false)
-        {
-            if (configPars("colorate = ") == true)
-            {
-                print_fetch();
-            }
-        } 
+        print_fetch();
     }
     else if (argc == 1 && getOS() == "Windows")
     {
-        if (configPars("minimalism = ") == false)
-        {
-            if (configPars("colorate = ") == true)
-            {
-                print_fetch();
-            }
-        } 
+        print_fetch(); 
     }
 }

@@ -218,8 +218,11 @@ std::string User::sys_uptime()
         uptime = si.uptime / 60; 
     }
 #endif
+#ifdef _WIN32
 
     uptime = GetTickCount64() / 1000;
+
+#endif
 
     int hours = uptime / 60;
     int minutes = uptime % 60;

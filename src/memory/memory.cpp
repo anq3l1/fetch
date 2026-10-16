@@ -2,8 +2,12 @@
 #include <fstream>
 #include "system/memory/memory.hpp"
 
+
 #ifdef _WIN32
 #include <windows.h>
+
+#else
+    #include <sys/sysinfo.h>
 #endif
 
 float Ram::totalram()
