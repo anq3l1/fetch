@@ -13,6 +13,18 @@
 #include "system/user/user.hpp"
 #include "logos.h"
 
+std::string indecation(bool up)
+{
+
+#ifdef __linux__
+    if(up == true)    
+        return "┌──────────────────────────────────────────┐";
+    else
+        return "└──────────────────────────────────────────┘";
+#endif
+    return "";
+}
+
 std::vector<std::string> parse_logo(const std::string& logo)
 {
     std::vector<std::string> lines;
@@ -49,7 +61,7 @@ void print_fetch()
     std::vector<std::string> info = {
         std::string(BLUE) + User::userl() + RESET + " @ " +
             BLUE + User::hostname() + RESET,
-        "┌──────────────────────────────────────────┐",
+        indecation(true),
         "  󰇺 Chassis: " + User::product_name(),
         "  󰣇 OS: " + User::distro_name(),
         "  󰍹 Resolution: " + GpuInfo::resolution(),
@@ -57,8 +69,8 @@ void print_fetch()
         "  󱗃 WM: " + User::waymang(),
         "   Shell: " + User::shell(),
         "  󰏗 Packages: " + User::install_packages(),
-        "└──────────────────────────────────────────┘",
-        "┌──────────────────────────────────────────┐",
+        indecation(false),
+        indecation(true),
         "   CPU: " + CPU::distro_cpu(),
         "  󰊴 GPU: " + GpuInfo::getGpuName(),
         "   GPU driver: " + GpuInfo::version_driver_nvidia(),
@@ -66,10 +78,12 @@ void print_fetch()
             " / " + std::to_string(Ram::totalram()) + " GB",
         "   Disk: " + std::to_string(Disk::disk_memory()) + " GB",
         "  󱫐 Uptime: " + User::sys_uptime(),
-        "└──────────────────────────────────────────┘",
+        indecation(false),
+#ifdef __linux__
         std::string(RED) + "● " + YELLOW + "● " + BLUE + "● " +
             CYAN + "● " + GREEN + "● " + RED + "● " +
             YELLOW + "● " + BLUE + "●" + RESET
+#endif
     };
 
     if (logo.empty())

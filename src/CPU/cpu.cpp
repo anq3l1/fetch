@@ -20,7 +20,7 @@ std::string CPU::distro_cpu()
                      "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0",
                      "ProcessorNameString", RRF_RT_REG_SZ, nullptr, name, &size) == ERROR_SUCCESS)
     {
-        return "";
+        return name;
     }
     SYSTEM_INFO info{};
     GetSystemInfo(&info);
