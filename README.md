@@ -51,7 +51,7 @@ Some features may be unavailable or behave differently across platforms.
      /      \              Kernel: Linux 6.x
     /   ,,   \             󰍹 WM: Hyprland
    /   |  |   \             Shell: zsh
-  /\_-''    ''-\_\         󰏗 Packages: pacman 935
+  /_-''    ''-_\         󰏗 Packages: pacman 935
                           └──────────────────────────────────────┘
                           ┌──────────────────────────────────────┐
                              CPU: AMD Ryzen 5 5500U
