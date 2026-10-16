@@ -43,50 +43,26 @@ Some features may be unavailable or behave differently across platforms.
 ### 🐧 Linux (Arch Linux)
 
 ```text
-              angel @ arch
-
-        /\             ┌──────────────────────────────────────┐
-       /  \               󰣇 OS: Arch Linux
-      /    \              󰍹 Resolution: 1920x1080
-     /      \              Kernel: Linux 6.x
-    /   ,,   \             󰍹 WM: Hyprland
-   /   |  |   \             Shell: zsh
-  /_-''    ''-_\         󰏗 Packages: pacman 935
-                          └──────────────────────────────────────┘
-                          ┌──────────────────────────────────────┐
-                             CPU: AMD Ryzen 5 5500U
-                            󰊴 GPU: NVIDIA GeForce GTX 1650
-                             GPU Driver: NVIDIA
-                             RAM: 6.04 / 14.95 GB
-                             Disk: 476 GB
-                            󱫐 Uptime: 1h 38min
-                          └──────────────────────────────────────┘
-                            ● ● ● ● ● ● ● ●
+         /\          anq3l1 @ arch
+        /  \         ┌──────────────────────────────────────────┐
+       /    \          󰇺 Chassis: Asus
+      /      \         󰣇 OS: Arch Linux
+     /   ,,   \        󰍹 Resolution: 1920x1080
+    /   |  |   \        Kernel: 7.x.x-archx-x
+   /_-''    ''-_\      󱗃 WM: Hyprland
+                        Shell: zsh
+                       󰏗 Packages: xxx
+                     └──────────────────────────────────────────┘
+                     ┌──────────────────────────────────────────┐
+                        CPU: AMD Ryzen 5 5500U
+                       󰊴 GPU: Geforce RTX 3050
+                        GPU driver: nvidia 615.xx.xx
+                        RAM: 2.943951 / 15.953518 GB
+                        Disk: 512 GB
+                       󱫐 Uptime: 14h 48min.
+                     └──────────────────────────────────────────┘
+                     ● ● ● ● ● ● ● ●
 ```
-
-### 🪟 Windows
-
-```text
-             angel @ Windows
-
-        ┌──────────────────────────────────────────┐
-        │           System Information             │
-        └──────────────────────────────────────────┘
-
-        OS:          Windows 11
-        Version:     25H2
-        Resolution:  1920x1080
-        Shell:       PowerShell
-        ────────────────────────────────────────────
-        CPU:         AMD Ryzen 5 5500U
-        GPU:         NVIDIA GeForce GTX 1650
-        GPU Driver:  NVIDIA
-        RAM:         6.04 / 14.95 GB
-        Disk:        476 GB
-        Uptime:      1h 38min
-        ────────────────────────────────────────────
-```
-
 *Examples are illustrative. Actual output and available information depend on your hardware, operating system, and Fetch configuration.*
 
 ## 🔧 Installation
@@ -107,13 +83,13 @@ Build the project using one of the supported compilation methods below.
 On Linux:
 
 ```bash
-g++ src/main.cpp src/system.cpp src/config.cpp src/oslogo.cpp -Iinclude -o fetch
+./install.sh
 ```
 
 Run Fetch:
 
 ```bash
-./fetch
+fetch
 ```
 
 ### Using CMake
@@ -123,12 +99,6 @@ cmake -B build
 cmake --build build
 ```
 
-Run on Linux:
-
-```bash
-./build/fetch
-```
-
 On Windows, use a compatible C++ compiler and CMake installation. Build commands and executable paths may vary depending on the selected generator and toolchain.
 
 ## 🔄 Cross-platform Development
@@ -136,27 +106,6 @@ On Windows, use a compatible C++ compiler and CMake installation. Build commands
 Fetch is being developed to work across different operating systems without relying on Linux-specific functionality everywhere.
 
 The project uses conditional compilation and platform-specific implementations to handle differences between Linux and Windows.
-
-Current development priorities include:
-
-- Improving GPU detection and handling systems with multiple graphics adapters
-- Correctly identifying GPU models and drivers
-- Improving hardware information retrieval on Windows
-- Implementing consistent system information output across platforms
-- Adapting the output layout to Windows and Linux environments
-- Improving operating system and version detection
-- Ensuring graceful handling of unavailable system information
-
-## 🛠️ Technologies
-
-- **C++**
-- **Standard C++ Library**
-- **CMake**
-- **Linux `/proc` and `/sys` interfaces**
-- **`uname()` and `sysinfo()` on supported Unix-like systems**
-- **Windows system APIs**
-
-No external libraries are currently required for the core functionality.
 
 ## 📜 License
 
