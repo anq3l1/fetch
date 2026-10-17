@@ -60,6 +60,7 @@ Some features may be unavailable or behave differently across platforms.
                         RAM: 2.943951 / 15.953518 GB
                         Disk: 512 GB
                        󱫐 Uptime: 14h 48min.
+                       󱫐 OS Age: 90 days
                      └──────────────────────────────────────────┘
                      ● ● ● ● ● ● ● ●
 ```
