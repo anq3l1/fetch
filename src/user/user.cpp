@@ -6,6 +6,9 @@
 #include <memory>
 #include <string>
 #include <vector>
+
+#include <chrono>
+
 #ifdef __linux__
 #include <sys/utsname.h>
 #include <sys/sysinfo.h>
@@ -289,3 +292,29 @@ std::string User::kernel()
     return release;
 #endif
 }
+
+#ifdef __linux__
+int User::osage()
+{
+    long long time = 0;
+
+    std::shared_ptr<FILE> pipe(popen("stat -c %W /", "r"), pclose);
+    char buffer[64];
+
+    if(fgets(buffer, sizeof(buffer), pipe.get()) != nullptr) {
+        time = std::stoll(buffer);
+    }
+
+    if (time <= 0)
+    return 0;
+
+    auto now = std::chrono::system_clock::now();
+    auto installDate = std::chrono::system_clock::from_time_t(time);
+
+    auto age = now - installDate;
+
+    auto days = std::chrono::duration_cast<std::chrono::days>(age).count();
+
+    return days;
+}
+#endif

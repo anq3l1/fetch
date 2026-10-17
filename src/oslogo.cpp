@@ -78,6 +78,7 @@ void print_fetch()
             " / " + std::to_string(Ram::totalram()) + " GB",
         "   Disk: " + std::to_string(Disk::disk_memory()) + " GB",
         "  󱫐 Uptime: " + User::sys_uptime(),
+        "  󱫐 OS Age: " + std::to_string(User::osage()) + " Days",
         indecation(false),
 #ifdef __linux__
         std::string(RED) + "● " + YELLOW + "● " + BLUE + "● " +
