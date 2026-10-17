@@ -2,14 +2,16 @@
 
 A lightweight, cross-platform system information fetcher written in **C++**.
 
-Fetch displays essential system information alongside an ASCII logo, providing a clean and customizable overview of your system.
+Fetch displays essential system information alongside an ASCII logo or a custom image, providing a clean and customizable overview of your system.
 
-Currently, Fetch supports **Linux and Windows**. Cross-platform compatibility is a work in progress, and some features may behave differently depending on the operating system.
+Currently, Fetch supports **Linux and Windows**. macOS support is planned.
 
 ## ✨ Features
 
-- 🐧 Automatic operating system and distribution detection
+- 🐧 Automatic operating system and Linux distribution detection
 - 🎨 OS-specific ASCII logos
+- 🖼️ Custom PNG image support
+- 🎲 Random selection of custom images
 - 🧠 CPU information
 - 🎮 GPU detection and graphics card information
 - ⚙️ GPU driver information
@@ -55,16 +57,50 @@ Some features may be unavailable or behave differently across platforms.
                      └──────────────────────────────────────────┘
                      ┌──────────────────────────────────────────┐
                         CPU: AMD Ryzen 5 5500U
-                       󰊴 GPU: Geforce RTX 3050
+                       󰊴 GPU: GeForce GTX 1650 Mobile
                         GPU driver: nvidia 615.xx.xx
-                        RAM: 2.943951 / 15.953518 GB
-                        Disk: 512 GB
-                       󱫐 Uptime: 14h 48min.
+                        RAM: 2.94 / 15.95 GB
+                        Disk: 476 GB
+                       󱫐 Uptime: 14h 48min
                        󱫐 OS Age: 90 days
                      └──────────────────────────────────────────┘
                      ● ● ● ● ● ● ● ●
 ```
+
 *Examples are illustrative. Actual output and available information depend on your hardware, operating system, and Fetch configuration.*
+
+## 🖼️ Custom Images
+
+You can customize Fetch by displaying your own images instead of the default ASCII logo.
+
+### How to add your image
+
+1. Open the Fetch project directory.
+2. Create a folder named `logo` in the project root.
+3. Place your image inside the `logo` folder.
+4. Run Fetch.
+
+Example directory structure:
+
+```text
+fetch/
+├── logo/
+│   ├── arch.png
+│   ├── wallpaper.png
+│   └── custom.png
+├── src/
+├── CMakeLists.txt
+├── install.sh
+└── README.md
+```
+
+Fetch can select an image randomly from the `logo` directory when multiple supported images are available.
+
+**Supported image formats:** PNG, JPG, JPEG, WEBP, and GIF.
+
+> **Note:** Image display currently relies on Kitty's image protocol and is intended for use in the Kitty terminal. Support in other terminals may vary.
+
+If no suitable image is found, Fetch falls back to the default ASCII logo.
 
 ## 🔧 Installation
 
@@ -75,13 +111,11 @@ git clone https://github.com/anq3l1/fetch.git
 cd fetch
 ```
 
-Build the project using one of the supported compilation methods below.
-
 ## 🛠️ Compilation
 
-### Using g++
+### Linux
 
-On Linux:
+Build and install Fetch using the provided installation script:
 
 ```bash
 ./install.sh
@@ -95,18 +129,52 @@ fetch
 
 ### Using CMake
 
+Configure the project:
+
 ```bash
 cmake -B build
+```
+
+Build:
+
+```bash
 cmake --build build
 ```
 
-On Windows, use a compatible C++ compiler and CMake installation. Build commands and executable paths may vary depending on the selected generator and toolchain.
+### Windows
+
+Install a compatible C++ compiler and CMake.
+
+Configure the project:
+
+```bash
+cmake -B build
+```
+
+Build:
+
+```bash
+cmake --build build --config Release
+```
+
+The executable's location depends on the selected compiler and CMake generator.
 
 ## 🔄 Cross-platform Development
 
-Fetch is being developed to work across different operating systems without relying on Linux-specific functionality everywhere.
+Fetch uses conditional compilation and platform-specific implementations to support differences between Linux and Windows.
 
-The project uses conditional compilation and platform-specific implementations to handle differences between Linux and Windows.
+Some features rely on operating-system-specific APIs and may require separate implementations for each platform.
+
+Cross-platform compatibility is an ongoing part of the project's development.
+
+## 🗺️ Roadmap
+
+- [x] Linux support
+- [x] Windows support
+- [x] Custom image support
+- [ ] macOS support
+- [ ] Improve terminal compatibility
+- [ ] Expand hardware information support
 
 ## 📜 License
 
