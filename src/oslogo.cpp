@@ -5,6 +5,7 @@
 #include <sstream>
 #include <algorithm>
 #include <iomanip>
+#include <filesystem>
 
 #include "colors.h"
 #include "system/GPU/gpuinfo.h"
@@ -54,6 +55,78 @@ std::string get_logo(const std::string& distro)
     return "Unknown Linux distribution";
 }
 
+namespace fs = std::filesystem;
+
+std::string getPicFromFolder()
+{
+    const char* home = std::getenv("HOME");
+    if (!home)
+        return "";
+
+    fs::path folder = fs::path("logo");
+
+    std::error_code ec;
+    if (!fs::is_directory(folder, ec))
+        return "";
+
+    for (const auto& entry : fs::directory_iterator(folder, ec))
+    {
+        if (ec)
+            break;
+
+        if (!entry.is_regular_file(ec) || ec)
+            continue;
+
+        std::string ext = entry.path().extension().string();
+
+        std::transform(ext.begin(), ext.end(), ext.begin(),
+            [](unsigned char c) { return std::tolower(c); });
+
+        if (ext == ".png" || ext == ".jpg" ||
+            ext == ".jpeg" || ext == ".webp" ||
+            ext == ".gif")
+        {
+            return entry.path().string();
+        }
+    }
+
+    return "";
+}
+
+std::string shellQuote(const std::string& str)
+{
+    std::string result = "'";
+
+    for (char c : str)
+    {
+        if (c == '\'')
+            result += "'\\''";
+        else
+            result += c;
+    }
+
+    return result + "'";
+}
+
+bool printImage(const std::string& path)
+{
+    if (path.empty())
+        return false;
+
+    std::cout << "\n\n" << std::flush;
+
+    std::string command =
+        "kitty +kitten icat --place 30x15@1x1 " +
+        shellQuote(path);
+
+    int result = std::system(command.c_str());
+
+    // Перемещаем курсор ниже картинки.
+    std::cout << "\033[16;1H" << std::flush;
+
+    return result == 0;
+}
+
 void print_fetch()
 {
     std::vector<std::string> logo = parse_logo(get_logo(User::distro_name()));
@@ -98,6 +171,26 @@ void print_fetch()
         }
     )->size();
 
+
+    const std::string imagePath = getPicFromFolder();
+
+    if (!imagePath.empty() && printImage(imagePath))
+    {
+        
+        for (std::size_t i = 0; i < info.size(); ++i)
+        {
+            // 35-й столбец — справа от изображения шириной 30 ячеек.
+            std::cout << "\033[" << i + 1 << ";35H"
+                      << info[i] << "\033[K";
+        }
+
+        std::cout << "\033[" << info.size() + 1 << ";1H"
+                  << std::flush;
+
+        return;
+    }
+
+    
     const std::size_t lines = std::max(logo.size(), info.size());
 
     for (std::size_t i = 0; i < lines; ++i)

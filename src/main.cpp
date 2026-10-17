@@ -32,8 +32,4 @@ int main(int argc, char* argv[])
     {
         print_fetch();
     }
-    else if (argc == 1 && getOS() == "Windows")
-    {
-        print_fetch(); 
-    }
 }
