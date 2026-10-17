@@ -1,10 +1,10 @@
-
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <iomanip>
 
 #include "colors.h"
 #include "system/GPU/gpuinfo.h"
