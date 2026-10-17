@@ -6,3 +6,4 @@
 #define YELLOW  "\033[33m"
 #define BLUE    "\033[34m"
 #define CYAN   "\033[36m"
+#define GREY   "\033[90m"

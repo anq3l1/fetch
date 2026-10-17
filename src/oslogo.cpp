@@ -18,9 +18,9 @@ std::string indecation(bool up)
 
 #ifdef __linux__
     if(up == true)    
-        return "┌──────────────────────────────────────────┐";
+        return std::string(GREY) + "┌──────────────────────────────────────────┐" + RESET;
     else
-        return "└──────────────────────────────────────────┘";
+        return std::string(GREY) + "└──────────────────────────────────────────┘" + RESET;
 #endif
     return "";
 }

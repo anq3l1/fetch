@@ -226,12 +226,14 @@ std::string User::sys_uptime()
     uptime = GetTickCount64() / 1000;
 
 #endif
-
+    std::string line_uptime = "";
     int hours = uptime / 60;
     int minutes = uptime % 60;
 
-    std::string line_uptime = std::to_string(hours) + "h " +
-                              std::to_string(minutes) + "min.";
+    if(hours == 0)
+        line_uptime = std::to_string(minutes) + " min.";
+    else                     
+        line_uptime = std::to_string(hours) + "h " + std::to_string(minutes) + "min.";
 
     return line_uptime;
 }
