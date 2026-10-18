@@ -319,4 +319,24 @@ int User::osage()
 
     return days;
 }
+
+std::string User::terminal()
+{
+    if (std::getenv("KITTY_WINDOW_ID"))
+        return "Kitty";
+
+    if (std::getenv("ALACRITTY_SOCKET"))
+        return "Alacritty";
+
+    if (std::getenv("KONSOLE_VERSION"))
+        return "Konsole";
+
+    const char* termProgram = std::getenv("TERM_PROGRAM");
+
+    if (termProgram != nullptr)
+        return termProgram;
+
+    return "Unknown";
+}
+
 #endif

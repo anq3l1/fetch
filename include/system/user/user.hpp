@@ -21,6 +21,7 @@ public:
     static std::string kernel();
 
     static int osage();
+    static std::string terminal();
 };
 
 extern User user;

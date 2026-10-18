@@ -52,6 +52,12 @@ std::string get_logo(const std::string& distro)
     if (distro == "Microsoft Windows")
         return windows;
 
+    if (distro == "Fedora" || distro == "Fedora Linux")
+        return fedora;
+
+    if (distro == "Ubuntu" || distro == "Ubuntu Linux")
+        return ubuntu;
+    
     return "Unknown Linux distribution";
 }
 
@@ -59,37 +65,38 @@ namespace fs = std::filesystem;
 
 std::string getPicFromFolder()
 {
-    const char* home = std::getenv("HOME");
-    if (!home)
-        return "";
-
-    fs::path folder = fs::path("logo");
-
-    std::error_code ec;
-    if (!fs::is_directory(folder, ec))
-        return "";
-
-    for (const auto& entry : fs::directory_iterator(folder, ec))
+    if(User::distro_name() == "Arch Linux" || User::terminal() == "Kitty" && User::waymang() == "Hyprland")
     {
-        if (ec)
-            break;
+        const char* home = std::getenv("HOME");
+        if (!home)
+            return "";
 
-        if (!entry.is_regular_file(ec) || ec)
-            continue;
+        fs::path folder = fs::path(home) / ".config" / "fetch" / "logo";
+        std::error_code ec;
+        if (!fs::is_directory(folder, ec))
+            return "";
 
-        std::string ext = entry.path().extension().string();
-
-        std::transform(ext.begin(), ext.end(), ext.begin(),
-            [](unsigned char c) { return std::tolower(c); });
-
-        if (ext == ".png" || ext == ".jpg" ||
-            ext == ".jpeg" || ext == ".webp" ||
-            ext == ".gif")
+        for (const auto& entry : fs::directory_iterator(folder, ec))
         {
-            return entry.path().string();
+            if (ec)
+                break;
+
+            if (!entry.is_regular_file(ec) || ec)
+                continue;
+
+            std::string ext = entry.path().extension().string();
+
+            std::transform(ext.begin(), ext.end(), ext.begin(),
+                [](unsigned char c) { return std::tolower(c); });
+
+            if (ext == ".png" || ext == ".jpg" ||
+                ext == ".jpeg" || ext == ".webp" ||
+                ext == ".gif")
+            {
+                return entry.path().string();
+            }
         }
     }
-
     return "";
 }
 
@@ -129,6 +136,8 @@ bool printImage(const std::string& path)
 
 void print_fetch()
 {
+    std::cout << "\033[2J\033[H" << std::flush;
+    
     std::vector<std::string> logo = parse_logo(get_logo(User::distro_name()));
 
     std::vector<std::string> info = {
@@ -141,6 +150,9 @@ void print_fetch()
         "   Kernel: " + User::kernel(),
         "  󱗃 WM: " + User::waymang(),
         "   Shell: " + User::shell(),
+    #ifdef __linux__
+        "  󰆍 Terminal: " + User::terminal(),
+    #endif
         "  󰏗 Packages: " + User::install_packages(),
         indecation(false),
         indecation(true),

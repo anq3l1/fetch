@@ -75,23 +75,20 @@ You can customize Fetch by displaying your own images instead of the default ASC
 
 ### How to add your image
 
-1. Open the Fetch project directory.
-2. Create a folder named `logo` in the project root.
+1. If you use Hyprland, go to ~/.config files.
+2. Create a folders named `fetch/logo/` in the `~/.config`.
 3. Place your image inside the `logo` folder.
 4. Run Fetch.
 
 Example directory structure:
 
 ```text
-fetch/
-├── logo/
-│   ├── arch.png
-│   ├── wallpaper.png
-│   └── custom.png
-├── src/
-├── CMakeLists.txt
-├── install.sh
-└── README.md
+~/.config/
+ └──fetch/
+    └──logo/
+       ├── arch.png
+       ├── wallpaper.png
+       └── custom.png
 ```
 
 Fetch can select an image randomly from the `logo` directory when multiple supported images are available.
