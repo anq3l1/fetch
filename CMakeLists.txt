@@ -17,9 +17,12 @@ add_executable(fetch
 
 target_include_directories(fetch PRIVATE include)
 
+if(WIN32)
+    # Windows-specific libraries, if needed
+elseif(UNIX AND NOT APPLE)
+    find_package(X11 REQUIRED)
+    target_link_libraries(fetch PRIVATE X11::X11)
 
-find_package(X11 REQUIRED)
-target_link_libraries(fetch PRIVATE X11::X11)
-find_library(XRANDR_LIBRARY Xrandr REQUIRED)
-target_link_libraries(fetch PRIVATE ${XRANDR_LIBRARY})
-
+    find_library(XRANDR_LIBRARY Xrandr REQUIRED)
+    target_link_libraries(fetch PRIVATE ${XRANDR_LIBRARY})
+endif()

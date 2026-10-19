@@ -319,9 +319,14 @@ int User::osage()
 
     return days;
 }
+#endif
+
 
 std::string User::terminal()
 {
+#ifdef _WIN32
+    return "PowerShell";
+#else
     if (std::getenv("KITTY_WINDOW_ID"))
         return "Kitty";
 
@@ -337,6 +342,6 @@ std::string User::terminal()
         return termProgram;
 
     return "Unknown";
+#endif
 }
 
-#endif

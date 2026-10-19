@@ -60,6 +60,7 @@ std::string get_logo(const std::string& distro)
     
     return "Unknown Linux distribution";
 }
+#ifdef __linux__
 
 namespace fs = std::filesystem;
 
@@ -128,11 +129,11 @@ bool printImage(const std::string& path)
 
     int result = std::system(command.c_str());
 
-    // Перемещаем курсор ниже картинки.
     std::cout << "\033[16;1H" << std::flush;
 
     return result == 0;
 }
+#endif
 
 void print_fetch()
 {
@@ -140,9 +141,33 @@ void print_fetch()
     
     std::vector<std::string> logo = parse_logo(get_logo(User::distro_name()));
 
+#ifdef _WIN32
     std::vector<std::string> info = {
         std::string(BLUE) + User::userl() + RESET + " @ " +
             BLUE + User::hostname() + RESET,
+        "-------------------------------------",
+        "  Chassis: " + User::product_name(),
+        "  OS: " + User::distro_name(),
+        "  Resolution: " + GpuInfo::resolution(),
+        "  Kernel: " + User::kernel(),
+        "  WM: " + User::waymang(),
+        "  Shell: " + User::shell(),
+        "  Terminal: " + User::terminal(),
+        "  Packages: " + User::install_packages(),
+        "  CPU: " + CPU::distro_cpu(),
+        "  GPU: " + GpuInfo::getGpuName(),
+        "  GPU driver: " + GpuInfo::version_driver_nvidia(),
+        "  RAM: " + std::to_string(Ram::usedram()) +
+            " / " + std::to_string(Ram::totalram()) + " GB",
+        "  Disk: " + std::to_string(Disk::disk_memory()) + " GB",
+        "  Uptime: " + User::sys_uptime(),
+
+#else
+    std::vector<std::string> info = {
+
+        std::string(BLUE) + User::userl() + RESET + " @ " +
+            BLUE + User::hostname() + RESET,
+
         indecation(true),
         "  󰇺 Chassis: " + User::product_name(),
         "  󰣇 OS: " + User::distro_name(),
@@ -150,11 +175,10 @@ void print_fetch()
         "   Kernel: " + User::kernel(),
         "  󱗃 WM: " + User::waymang(),
         "   Shell: " + User::shell(),
-    #ifdef __linux__
         "  󰆍 Terminal: " + User::terminal(),
-    #endif
         "  󰏗 Packages: " + User::install_packages(),
         indecation(false),
+
         indecation(true),
         "   CPU: " + CPU::distro_cpu(),
         "  󰊴 GPU: " + GpuInfo::getGpuName(),
@@ -164,8 +188,9 @@ void print_fetch()
         "   Disk: " + std::to_string(Disk::disk_memory()) + " GB",
         "  󱫐 Uptime: " + User::sys_uptime(),
         "  󱫐 OS Age: " + std::to_string(User::osage()) + " Days",
+
         indecation(false),
-#ifdef __linux__
+
         std::string(RED) + "● " + YELLOW + "● " + BLUE + "● " +
             CYAN + "● " + GREEN + "● " + RED + "● " +
             YELLOW + "● " + BLUE + "●" + RESET
@@ -183,7 +208,7 @@ void print_fetch()
         }
     )->size();
 
-
+#ifdef __linux__
     const std::string imagePath = getPicFromFolder();
 
     if (!imagePath.empty() && printImage(imagePath))
@@ -201,7 +226,7 @@ void print_fetch()
 
         return;
     }
-
+#endif
     
     const std::size_t lines = std::max(logo.size(), info.size());
 

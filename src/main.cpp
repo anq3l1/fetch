@@ -28,7 +28,7 @@ std::string getOS()
 
 int main(int argc, char* argv[])
 {
-    if (argc == 1 && getOS() == "Linux")
+    if (argc == 1)
     {
         print_fetch();
     }

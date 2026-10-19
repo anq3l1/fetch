@@ -20,7 +20,9 @@ public:
 
     static std::string kernel();
 
+#ifdef __linux__
     static int osage();
+#endif
     static std::string terminal();
 };
 
