@@ -71,20 +71,20 @@ Some features may be unavailable or behave differently across platforms.
 ```text
    .-----. .-----.             aspire\angel @ 
    |     | |     |             -------------------------------------
-   |     | |     |               Chassis: Aspire A715-42G
+   |     | |     |               Chassis: ASUS
    '-----' '-----'               OS: Microsoft Windows
    .-----. .-----.               Resolution: 1920x1080
-   |     | |     |               Kernel: 10.0 (build 26300)
+   |     | |     |               Kernel: xx.x (build 26300)
    |     | |     |               WM: Desktop Window Manager
-   '-----' '-----'               Shell: C:\WINDOWS\system32\cmd.exe
+   '-----' '-----'               Shell: cmd.exe
                                  Terminal: PowerShell
                                  Packages: N/A
-                                 CPU: AMD Ryzen 5 5500U with Radeon Graphics         
-                                 GPU: Unknown
+                                 CPU: AMD Ryzen 5 5500U         
+                                 GPU: GTX 1650 TI
                                  GPU driver: Unkonwn
                                  RAM: 10.230335 / 15.338436 GB
-                                 Disk: 180 GB
-                                 Uptime: 253h 22min.
+                                 Disk: 512 GB
+                                 Uptime: 14h 48min.
 ```
 
 *Examples are illustrative. Actual output and available information depend on your hardware, operating system, and Fetch configuration.*
