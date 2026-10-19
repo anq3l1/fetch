@@ -165,6 +165,11 @@ Install a compatible C++ compiler and CMake.
 Configure the project:
 
 ```bash
+./install.bat
+```
+or
+
+```bash
 cmake -B build
 ```
 
@@ -172,6 +177,11 @@ Build:
 
 ```bash
 cmake --build build --config Release
+```
+
+Run:
+```bash
+.\fetch.exe
 ```
 
 The executable's location depends on the selected compiler and CMake generator.
