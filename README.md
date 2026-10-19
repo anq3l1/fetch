@@ -67,6 +67,26 @@ Some features may be unavailable or behave differently across platforms.
                      ● ● ● ● ● ● ● ●
 ```
 
+### Windows 
+```text
+   .-----. .-----.             aspire\angel @ 
+   |     | |     |             -------------------------------------
+   |     | |     |               Chassis: Aspire A715-42G
+   '-----' '-----'               OS: Microsoft Windows
+   .-----. .-----.               Resolution: 1920x1080
+   |     | |     |               Kernel: 10.0 (build 26300)
+   |     | |     |               WM: Desktop Window Manager
+   '-----' '-----'               Shell: C:\WINDOWS\system32\cmd.exe
+                                 Terminal: PowerShell
+                                 Packages: N/A
+                                 CPU: AMD Ryzen 5 5500U with Radeon Graphics         
+                                 GPU: Unknown
+                                 GPU driver: Unkonwn
+                                 RAM: 10.230335 / 15.338436 GB
+                                 Disk: 180 GB
+                                 Uptime: 253h 22min.
+```
+
 *Examples are illustrative. Actual output and available information depend on your hardware, operating system, and Fetch configuration.*
 
 ## 🖼️ Custom Images
